@@ -1,0 +1,25 @@
+<h1>Todo</h1>
+<main>
+    <form *ngIf="taskRepo.metadata.apiInsertAllowed()" (submit)="addTask()">
+        <input 
+            placeholder="Whate needs to be done?"
+            [(ngModel)]="newTaskTitle"
+            name="newTaskTitle"
+        >
+        <button>Add</button>
+    </form>
+    <div>
+        <button (click)="setAllCompleted(true)">Set all as completed</button>
+        <button (click)="setAllCompleted(false)">Set all as uncompleted</button>
+    </div>
+    <div *ngFor="let task of tasks">
+        <input 
+            type="checkbox"
+            [(ngModel)]="task.completed"
+            (change)="saveTask(task)"
+        />
+        <input [(ngModel)]="task.title" />
+        <button (click)="saveTask(task)">Save</button>
+        <button *ngIf="taskRepo.metadata.apiDeleteAllowed(task)" (click)="deleteTask(task)">Delete</button>
+    </div>
+</main>
