@@ -27,7 +27,7 @@ app.use(auth)
 
 app.use(api)
 
-app.use(express.static(path.join(__dirname, '../remutl-angular-todo/')));
+app.use(express.static(path.join(__dirname, '../remult-angular-todo/')));
 
 app.get('/*', (req, res) => {
     res.sendFile(
